@@ -138,12 +138,6 @@ SESSION_CONFIGS = [
         'app_sequence': ['my_public_goods', 'survey', 'payment_info'],
     },
     {
-        'name': 'my_simple_survey',
-        'display_name': "My Simple Survey",
-        'num_demo_participants': 3,
-        'app_sequence': ['my_simple_survey'],
-    },
-    {
 
         'name':'public_goods',
         'display_name': "Public Goods",
