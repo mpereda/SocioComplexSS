@@ -1,0 +1,53 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+    Round {{ subsession.round_number }} of {{ Constants.num_rounds }}
+{% endblock %}
+
+{% block content %}
+
+<h4>Intructions</h4>
+<p ALIGN=justify >
+    You are playing in a group of {{Constants.players_per_group}} people. Your group is going to be divided in two: A and B. You have
+    to decide which group you want to be in. Each player in the group with the smallest size will receive 1 point. Each people in the group
+    with the largest size will receive nothing (zero points), so you will want to be in the smallest group.
+</p>
+<p ALIGN=justify>
+After your decision, you will be told your result together with the result of your last {{Constants.memory_size}} choices.
+    For your convenience, this instructions will remain available during the whole experiment.
+</p>
+<br></br>
+<h4>Your decision</h4>
+    {% formfield player.decision %}
+
+{% if player.round_number > 1 %}
+<br></br>
+<h4>Round history</h4>
+
+    <table class="table">
+        <tr>
+            <th>Round</th>
+            <th>Smallest group</th>
+            <th>Your decision</th>
+            <th>Your result</th>
+        </tr>
+        {% for p in player_in_previous_rounds %}
+            <tr>
+                <td>{{ p.round_number }}</td>
+                <td>{% if p.payoff == 1 %} <span class="text-info"> {{p.group.minority}} </span>
+                    {% else %} {{p.group.minority}} {% endif %}
+                </td>
+                <td>
+                {% if p.payoff == 1 %} <span class="text-info"> {{p.decision}} </span>
+                    {% else %} <span class="text-danger"> {{p.decision}} </span> {% endif %}
+                </td>
+                <td>{{ p.payoff|floatformat:"0" }} points</td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endif %}
+
+    {% next_button %}
+
+{% endblock %}

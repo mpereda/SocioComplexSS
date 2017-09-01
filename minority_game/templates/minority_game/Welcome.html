@@ -1,0 +1,19 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+    Welcome to the experiment
+{% endblock %}
+
+{% block content %}
+
+
+<p ALIGN=justify >
+    Your are going to participate in an experiment with other people. Your earnings will depend on your decisions and on the decisions of the people
+    playing in your group. Since this experiment is just an example for the course, you will not be paid.
+    Click "next" to read the instructions and make your first decision:
+</p>
+
+    {% next_button %}
+
+{% endblock %}

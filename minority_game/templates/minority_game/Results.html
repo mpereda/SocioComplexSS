@@ -1,0 +1,38 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+    Results. Round {{ subsession.round_number }} of {{ Constants.num_rounds }}
+{% endblock %}
+
+{% block content %}
+    You played {{player.decision}}. The smallest group was {{player.group.minority}}, so you earned {{player.payoff|floatformat:"0"}} points.
+
+<br> </br>
+<h4>Round history</h4>
+
+    <table class="table">
+        <tr>
+            <th>Round</th>
+            <th>Smallest group</th>
+            <th>Your decision</th>
+            <th>Your result</th>
+        </tr>
+        {% for p in player_in_previous_rounds %}
+            <tr>
+                <td>{{ p.round_number }}</td>
+                <td>{% if p.payoff == 1 %} <span class="text-info"> {{p.group.minority}} </span>
+                    {% else %} {{p.group.minority}} {% endif %}
+                </td>
+                <td>
+                {% if p.payoff == 1 %} <span class="text-info"> {{p.decision}} </span>
+                    {% else %} <span class="text-danger"> {{p.decision}} </span> {% endif %}
+                </td>
+                <td>{{ p.payoff|floatformat:"0" }} points</td>
+            </tr>
+        {% endfor %}
+    </table>
+
+{% next_button %}
+
+{% endblock %}

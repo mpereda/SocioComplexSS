@@ -1,0 +1,14 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %} Results {% endblock %}
+
+{% block content %}
+
+<p>
+    You were in the smallest group {{ player.participant.payoff | floatformat:"0" }} times, so you have won {{ player.participant.payoff|floatformat:"0"}} points.
+</p>
+<p>Congratulations!</p>
+
+
+{% endblock %}
