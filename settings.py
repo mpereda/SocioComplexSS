@@ -60,6 +60,8 @@ AWS_SECRET_ACCESS_KEY = environ.get('AWS_SECRET_ACCESS_KEY')
 # e.g. EUR, CAD, GBP, CHF, CNY, JPY
 REAL_WORLD_CURRENCY_CODE = 'EUR'
 USE_POINTS = True
+POINTS_DECIMAL_PLACES = 4  ############################## MARIA EDIT
+REAL_WORLD_CURRENCY_DECIMAL_PLACES = 6 ############################## MARIA EDIT
 
 
 
@@ -132,10 +134,30 @@ SESSION_CONFIG_DEFAULTS = {
 
 SESSION_CONFIGS = [
     {
+        'name': 'GSEapp',
+        'display_name': "GSEapp",
+        'num_demo_participants': 2,
+        'app_sequence': ['GSEapp'],
+        'budget_per_person': 0.6,
+    },
+{
+        'name': 'minority_game',
+        'display_name': "Minority Game",
+        'num_demo_participants': 2,
+        'app_sequence': ['minority_game'],
+        'use_browser_bots': False,
+    },
+    {
         'name': 'my_public_goods',
         'display_name': "My Public Goods (Simple Version)",
         'num_demo_participants': 3,
         'app_sequence': ['my_public_goods', 'survey', 'payment_info'],
+    },
+    {
+        'name': 'my_simple_survey',
+        'display_name': "My Simple Survey",
+        'num_demo_participants': 3,
+        'app_sequence': ['my_simple_survey'],
     },
     {
 
